@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Results</title>
+  <link rel="stylesheet" href="{% static 'detector/styles.css' %}">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <a href="{% url 'landing' %}">
+        <img src="{% static 'detector/IncepTB.png' %}" alt="Logo" class="logo">
+      </a>
+    </div>
+    <div class="sidebar-buttons">
+      <a href="{% url 'upload' %}" class="sidebar-btn">Upload</a>
+      <a class="sidebar-btn active">Result</a>
+    </div>
+  </div>
+
+  <div class="main">
+    <h1><a href="/">HOME</a></h1>
+    <div class="results-box">
+      <h2>Details</h2>
+
+      <p><strong>Diagnosis:</strong>
+        {% if result == "TB-Negative" %}
+          <span style="color: green;">{{ result }}</span>
+        {% elif result == "TB-Positive" %}
+          <span style="color: red;">{{ result }}</span>
+        {% endif %}
+      </p>
+
+      {% if confidence %}
+          <p><strong>{{ confidence_label }}:</strong> {{ confidence }}</p>
+      {% endif %}
+
+      
+      <p><strong>Image Filename:</strong> {{ uploaded_filename }}</p>
+
+      <hr>
+
+      <div class="images">
+        <div>
+          <p><strong>Original Image</strong></p>
+          <img src="{{ file_url }}" width="300">
+        </div>
+        <div>
+          <p><strong>Grad-CAM</strong></p>
+          {% if show_gradcam and heatmap %}
+              <img src="data:image/png;base64,{{ heatmap }}" alt="Grad-CAM Heatmap" width="300">
+          {% else %}
+              <p><em>No Grad-CAM available</em></p>
+              <p><em>TB-Negative</em></p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="buttons">
+        <form method="post" action="{% url 'save_result' %}">
+          {% csrf_token %}
+          <button type="submit">Save</button>
+        </form>
+        <a href="/upload/"><button>Back</button></a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

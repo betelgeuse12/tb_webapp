@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IncepTB Home</title>
+  <link rel="stylesheet" href="{% static 'detector/styles.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <img src="{% static 'detector/IncepTB.png' %}" alt="Logo" class="logo">
+      </div>
+      <div class="sidebar-buttons">
+        <a href="{% url 'upload' %}" class="sidebar-btn">Upload</a>
+      </div>
+    </div>
+
+    <div class="main-content-split">
+      <div class="content-left">
+        <h2>Welcome!</h2>
+        <p>Welcome to IncepTB, a PA CXR analysis tool for detection of Tuberculosis.</p>
+
+        <h3>About</h3>
+        <p>
+          IncepTB is an AI-powered tool designed for fast and accessible screening of Tuberculosis using chest X-ray images. 
+          It leverages CNNs and XAI for visual explanations to assist healthcare professionals.
+        </p>
+
+        <h3>Instructions</h3>
+        <ul>
+          <li>Upload a chest X-ray image (in .png format) using the Upload button on the side panel.</li>
+          <li>Receive an AI prediction of the diagnosis.</li>
+          <li>View visual explanation via Grad-CAM.</li>
+        </ul>
+      </div>
+      
+      <div class="content-right">
+        <h3>FAQ</h3>
+        <p><b>What images are accepted?</b> Only PA chest X-ray images in .png format.</p>
+        <p><b>Can I upload a DICOM file?</b> No. DICOM files are <b>not</b> accepted. Please convert your chest X-ray to <b>.png</b> format before uploading.</p>
+        <p><b>What model does IncepTB use?</b> IncepTB uses the <b>InceptionV3</b> deep learning model, fine-tuned for Tuberculosis detection.</p>
+        <p><b>How is the confidence score computed?</b> The system provides a confidence score (probability) for both TB-Positive and TB-Negative results. This reflects the model's certainty in its prediction.</p>
+        <p><b>How accurate is the prediction?</b> The model is trained on validated datasets and a healthcare professional will decide the final interpretation.</p>
+
+        <h3>Disclaimer</h3>
+        <p>
+          <b>This tool is not a replacement for medical diagnosis.</b>
+          Results should be confirmed by a healthcare professional.
+        </p>
+      </div>
+    </div>
+
+</body>
+</html>

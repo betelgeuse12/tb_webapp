@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django migrations
+**/migrations/
+*.sqlite3
+
+# VSCode settings
+.vscode/
+
+# Environment variables
+.env
+
+# macOS and Windows files
+.DS_Store
+Thumbs.db
+
+# Media & reports (if not needed on repo)
+media/
+*.pdf
+
+# Large ML models - Add your model folders!
+detector/models/**/*.h5
+detector/models/**/*.zip
+detector/models/**/variables.data-*
+detector/models/**/variables.index
+detector/models/**/*.pb
+
+# Git Large File Storage (if you use it)
+.gitattributes
+
+# Ignore logs
+*.log

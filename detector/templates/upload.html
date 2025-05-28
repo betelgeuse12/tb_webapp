@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Chest X-ray</title>
+  <link rel="stylesheet" href="{% static 'detector/styles.css' %}">
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <a href="{% url 'landing' %}">
+        <img src="{% static 'detector/IncepTB.png' %}" alt="Logo" class="logo">
+      </a>
+    </div>
+    <div class="sidebar-buttons">
+      <a href="{% url 'upload' %}" class="sidebar-btn">Upload</a>
+    </div>
+  </div>
+
+  <div class="main">
+    <h1><a href="/">HOME</a></h1>
+    <div class="upload-box">
+      <h2>UPLOAD XRAY</h2>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="xray">Choose a .png X-ray Image</label>
+        <input type="file" name="xray" accept=".png" required>
+
+        {% if error %}
+          <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
